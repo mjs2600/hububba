@@ -1,11 +1,14 @@
 (ns hububba.views
   (:use hiccup.core))
 
-(defn index [statuses]
+(defn index [posts]
   (html [:h1 "Hububba"]
-        [:input {:name "status"}]
+        [:input {:name "post"}]
+        [:textarea {:name "content"}]
+        [:input {:type "button"
+                 :value "Post"}]
         [:div
-         {:id "statuses"}
+         {:id "posts"}
          [:ul
-          (for [status statuses]
-              [:li status])]]))
+          (for [post posts]
+            [:li (:title post)])]]))
