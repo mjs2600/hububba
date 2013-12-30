@@ -6,7 +6,8 @@
             [hububba.db :as db]))
 
 (defroutes app-routes
-  (GET "/" [] (views/index (db/all-posts) ))
+  (GET "/" [] (views/index (db/all-posts)))
+  (GET "/posts" [] (pr-str (db/all-posts)))
   (route/resources "/")
   (route/not-found "Not Found"))
 

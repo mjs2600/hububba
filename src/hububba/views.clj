@@ -1,8 +1,12 @@
 (ns hububba.views
-  (:use hiccup.core))
+  (:use hiccup.core
+        hiccup.page
+        hiccup.element))
 
 (defn index [posts]
-  (html [:h1 "Hububba"]
+  (html (include-js "/js/goog/base.js" "/js/app.js")
+        (javascript-tag "goog.require('hububba.core');")
+        [:h1 "Hububba"]
         [:input {:name "post"}]
         [:textarea {:name "content"}]
         [:input {:type "button"
