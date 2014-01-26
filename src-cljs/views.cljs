@@ -7,10 +7,12 @@
 
 (defn add-post [post]
   (ef/at js/document
-         ["ul"] (ef/prepend (ef/html [:li post]))))
+         ["div#posts"] (ef/prepend (ef/html [:dl [:dt (:title post)]
+                                          [:dd (:content post)]]))))
 
 (defn add-posts [posts]
-  (doseq [post posts] (add-post post)))
+  (do (ef/at js/document ["div#posts"] (ef/content nil))
+      (doseq [post posts] (add-post post))))
 
 (defn get-new-post []
   (ef/from "#post-form" (ef/read-form)))
