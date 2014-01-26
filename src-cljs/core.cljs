@@ -1,6 +1,8 @@
 (ns hububba.core
-  (:require [hububba.posts :as posts]))
+  (:require [hububba.posts :as posts]
+            [hububba.views :as views]))
 
-(defn- start [] (posts/all-posts))
+(defn- start [] (do (posts/all-posts)
+                    (views/create-posts)))
 
 (set! (.-onload js/window) start)

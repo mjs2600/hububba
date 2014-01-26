@@ -7,11 +7,9 @@
 (connect!)
 (set-db! (get-db "hububba"))
 
-(defn new-post [title content]
+(defn new-post [post]
   (insert "posts"
-          {:_id (ObjectId.)
-           :title title
-           :content content}))
+          (conj post {:_id (ObjectId.)})))
 
 (defn all-posts []
   (find-maps "posts"))

@@ -2,6 +2,7 @@
   (:require [ajax.core :refer [ajax-request
                                raw-response-format
                                url-request-format
+                               edn-format
                                codec]]
             [hububba.views :as views]))
 
@@ -14,3 +15,8 @@
   (ajax-request "/posts" :get {:handler render-posts
                                :format (codec (url-request-format)
                                               (raw-response-format))}))
+
+(defn create-post [post]
+  (ajax-request "/posts" :post {:params post
+                                :handler render-posts
+                                :format (codec (edn-format))}))
