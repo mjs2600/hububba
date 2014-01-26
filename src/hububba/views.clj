@@ -8,7 +8,7 @@
         (javascript-tag "goog.require('hububba.core');")
         [:h1 "Hububba"]
         [:form {:id "post-form"}
-         [:input {:name "post"
+         [:input {:name "title"
                   :id "title"}]
          [:textarea {:name "content"
                      :id "content"}]

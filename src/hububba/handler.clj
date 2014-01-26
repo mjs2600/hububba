@@ -15,9 +15,9 @@
 (defroutes app-routes
   (GET "/" [] (views/index (db/all-posts)))
   (GET "/posts" [] (edn-response (db/all-posts)))
-  (POST "/posts" [post] (edn-response (db/all-posts)))
+  (POST "/posts" {params :params} (db/new-post params) (edn-response (db/all-posts)))
   (route/resources "/")
   (route/not-found "Not Found"))
 
 (def app
-  (handler/site app-routes))
+  (wrap-edn-params (handler/site app-routes)))

@@ -18,7 +18,7 @@
   (ef/from "#post-form" (ef/read-form)))
 
 (defn create-post []
-  (posts/create-post (pr-str (get-new-post))))
+  (posts/create-post (get-new-post)))
 
 (em/defaction create-posts []
   ["#new-post"] (events/listen :click #(do (create-post) false)))

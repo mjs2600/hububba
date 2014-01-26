@@ -1,21 +1,18 @@
 (ns hububba.posts
-  (:require [ajax.core :refer [ajax-request
-                               raw-response-format
-                               url-request-format
-                               edn-format
-                               codec]]
+  (:require [ajax.core :refer [GET POST]]
             [hububba.views :as views]))
 
-(defn render-posts [[ok content]]
-  (.log js/console content)
+(defn render-posts [content]
+  (.log js/console (str content))
   (views/add-posts content))
 
 (defn all-posts []
   (.log js/console "Getting posts")
-  (ajax-request "/posts" :get {:handler render-posts
-                               :format (edn-format)}))
+  (GET "/posts"
+       {:handler render-posts}))
 
 (defn create-post [post]
-  (ajax-request "/posts" :post {:params post
-                                :handler render-posts
-                                :format (edn-format)}))
+  (do (.log js/console (pr-str post))
+      (POST "/posts"
+            {:params post
+             :handler render-posts})))
