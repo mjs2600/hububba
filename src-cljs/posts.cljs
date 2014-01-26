@@ -8,15 +8,14 @@
 
 (defn render-posts [[ok content]]
   (.log js/console content)
-  (views/add-posts (cljs.reader/read-string (str content))))
+  (views/add-posts content))
 
 (defn all-posts []
   (.log js/console "Getting posts")
   (ajax-request "/posts" :get {:handler render-posts
-                               :format (codec (url-request-format)
-                                              (raw-response-format))}))
+                               :format (edn-format)}))
 
 (defn create-post [post]
   (ajax-request "/posts" :post {:params post
                                 :handler render-posts
-                                :format (codec (edn-format))}))
+                                :format (edn-format)}))

@@ -12,4 +12,4 @@
           (conj post {:_id (ObjectId.)})))
 
 (defn all-posts []
-  (find-maps "posts"))
+  (map #(assoc % :_id (str (:_id %))) (find-maps "posts")))

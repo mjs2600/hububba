@@ -4,6 +4,7 @@
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [org.clojure/clojurescript "0.0-2127"]
                  [compojure "1.1.6"]
+                 [fogus/ring-edn "0.2.0"]
                  [hiccup "1.0.4"]
                  [com.novemberain/monger "1.5.0"]
                  [enfocus "2.0.2"]
